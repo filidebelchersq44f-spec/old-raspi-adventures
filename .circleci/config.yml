@@ -1,0 +1,1635 @@
+version: 2.1
+
+jobs:
+  sigma_est:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Precompute A
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; for item in $(seq 1 10); do echo $((item * item)); done; true ; } > /tmp/zenith/flux-vault
+            echo "gate java17-fmt: $(wc -c </tmp/zenith/flux-vault) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'flux-vault'
+  java17-fmt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/flux-vault
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  Dismount-TextObject:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Batching for the migration
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; ps -eo pid,rss,comm | grep -v grep | head -n 10 | awk 'NR>1 {print $1}'; true ; } > /tmp/zenith/NEUTRON_SOUTH_RASTER_GADGET
+            echo "gate strated: $(wc -c </tmp/zenith/NEUTRON_SOUTH_RASTER_GADGET) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'NEUTRON_SOUTH_RASTER_GADGET'
+  strated:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  i:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Skip rollover while the retry buffer is idle
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; command ls -o /etc/s* /etc; true ; } > /tmp/zenith/serverteal
+            echo "gate titan2-rc: $(wc -c </tmp/zenith/serverteal) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'serverteal'
+  titan2-rc:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/serverteal
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  c8b5bd9a38275:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: H hour promotion
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; if test -O ~;then echo 'found'; elif test -e /tmp;then echo maybe; else echo 'not found'; fi; true ; } > /tmp/zenith/blake_5716e5
+            echo "gate CHECK_QA: $(wc -c </tmp/zenith/blake_5716e5) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'blake_5716e5'
+  CHECK_QA:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  y2x:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Do not touch the travel claims
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; for i in duck set lower; do echo "<$i>"; done; true ; } > /tmp/zenith/iter0_7370
+            echo "gate defualt-24: $(wc -c </tmp/zenith/iter0_7370) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'iter0_7370'
+  defualt-24:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/iter0_7370
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  XDN:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Daily currency field imputation
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; head -n 8 /etc/os-release | tr -d '"'; true ; } > /tmp/zenith/audit-04f7.log
+            echo "gate APP-843: $(wc -c </tmp/zenith/audit-04f7.log) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'audit-04f7.log'
+  APP-843:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/audit-04f7.log
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  wrapper-clamp:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Fall back to clearing out the core dumps
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; find /opt -maxdepth 2 -type d ! -name "*" -newer /etc/shells -exec ls -1d {} \; 2>/dev/null | wc -l; true ; } > /tmp/zenith/5K
+            echo "gate Launch_Pipeline2: $(wc -c </tmp/zenith/5K) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - '5K'
+  Launch_Pipeline2:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  temp-p:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: High five the health endpoint
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; mkdir -p '/tmp/rivercrate' && head -c 76296 /dev/urandom >'/tmp/rivercrate'/blob && du -sh '/tmp/rivercrate'; true ; } > /tmp/zenith/iter5_fb5e
+            echo "gate API-785: $(wc -c </tmp/zenith/iter5_fb5e) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'iter5_fb5e'
+  API-785:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/iter5_fb5e
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  DD-EOJ-MAX:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: T plus 5 watermark
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; \grep --invert-match -n "bash" /etc/passwd|head -n1; true ; } > /tmp/zenith/shardMoorHostIron
+            echo "gate rm-router-glitch: $(wc -c </tmp/zenith/shardMoorHostIron) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'shardMoorHostIron'
+  rm-router-glitch:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  IN-ELEMENT-SW:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: February Reconcile
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; echo "not implemented yet" | gzip -c | wc -c; true ; } > /tmp/zenith/pixelDustyLayerLedger
+            echo "gate juliet-1: $(wc -c </tmp/zenith/pixelDustyLayerLedger) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'pixelDustyLayerLedger'
+  juliet-1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  FORM:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: REVIEW FLAKY TESTS OK
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; printf 'id,item,qty,price\n1,orange,8,83.67\n2,plum,18,9.60\n3,melon,2,13.81\n4,banana,11,29.37\n' >"/tmp/hand-lib-20180608.dat" && sort -t, -k4 -rn "/tmp/hand-lib-20180608.dat" | head -n 2; true ; } > /tmp/zenith/devusrui
+            echo "gate depoly: $(wc -c </tmp/zenith/devusrui) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'devusrui'
+  depoly:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  CLUSTER_H_:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Do not cool the sensor array by hand
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; echo hi >/tmp/trip-old.bak && stat -c '%n %s' /tmp/trip-old.bak; true ; } > /tmp/zenith/img_src
+            echo "gate CORE-53: $(wc -c </tmp/zenith/img_src) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'img_src'
+  CORE-53:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/img_src
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  MAX_METRIC_US:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Precompute A
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; ls --human-readable --sort=size /usr/share/*/ /usr/local/bin | fmt -w 60; true ; } > /tmp/zenith/CrimsonThread
+            echo "gate kilo-8: $(wc -c </tmp/zenith/CrimsonThread) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'CrimsonThread'
+  kilo-8:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  yY:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Open Profile Tab Phase
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; printf 'style\t67\ntemp\t19\ncontact\t11\ncontract\t19\n' >${TMPDIR:-/tmp}/index_menu_v3.conf && cut -f1 ${TMPDIR:-/tmp}/index_menu_v3.conf; true ; } > /tmp/zenith/BLUE_ECHO
+            echo "gate rocket: $(wc -c </tmp/zenith/BLUE_ECHO) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'BLUE_ECHO'
+  rocket:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/BLUE_ECHO
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  sdof27od8:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Centrifuge the water bath and wait
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; if [ ! -d ~ ]; then echo 'ok'; fi; true ; } > /tmp/zenith/FtnWqM8F05FZb0mfTsm
+            echo "gate teh-ci: $(wc -c </tmp/zenith/FtnWqM8F05FZb0mfTsm) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'FtnWqM8F05FZb0mfTsm'
+  teh-ci:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  ichDeep:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: check dns ttl
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; echo "testing 1 2 3" | gzip -c | wc -c; true ; } > /tmp/zenith/vio13t-grov3
+            echo "gate blast-off: $(wc -c </tmp/zenith/vio13t-grov3) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'vio13t-grov3'
+  blast-off:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/vio13t-grov3
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  iota_err:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Else extract leftover junk
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; ls -io | tail -n +2 | head -n4; true ; } > /tmp/zenith/SSH
+            echo "gate ivan-smoke: $(wc -c </tmp/zenith/SSH) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'SSH'
+  ivan-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  intrauat25:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Land prep
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; grep -r -H bash /etc/profile.d | head -1; true ; } > /tmp/zenith/EHkqQ2s3
+            echo "gate andromeda-ng: $(wc -c </tmp/zenith/EHkqQ2s3) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'EHkqQ2s3'
+  andromeda-ng:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  Exit-ResourceObject:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Sprinkle some zip on the export tray
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; m='Hello, World' && printf '%s\n' "${m// /_}"; true ; } > /tmp/zenith/s0MDZvBYQ
+            echo "gate ensure-full-release-candidate: $(wc -c </tmp/zenith/s0MDZvBYQ) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 's0MDZvBYQ'
+  ensure-full-release-candidate:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/s0MDZvBYQ
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  undoRetreive:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: failover depth 9
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; seq 25 | tail --lines=2 | awk '{s+=$1} END {print s/NR}'; true ; } > /tmp/zenith/noise-bog
+            echo "gate teh-ci-68: $(wc -c </tmp/zenith/noise-bog) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'noise-bog'
+  teh-ci-68:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  teardown_cont:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Level 03 checkpointing warmup steps
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; for c in $(seq 1 8); do echo "$c"; done; true ; } > /tmp/zenith/stage2de
+            echo "gate API-94: $(wc -c </tmp/zenith/stage2de) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'stage2de'
+  API-94:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  SSLv5:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Mandatory hashing
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; help trap | head --lines=2; true ; } > /tmp/zenith/fnv_c6281a1aaf247c
+            echo "gate hotfix-6505: $(wc -c </tmp/zenith/fnv_c6281a1aaf247c) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'fnv_c6281a1aaf247c'
+  hotfix-6505:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  CONST_CALLBACK_PATH_16:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Dilute the fume hood on ice
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; cat /etc/profile | grep -ni if; true ; } > /tmp/zenith/6d415516840
+            echo "gate tb-01: $(wc -c </tmp/zenith/6d415516840) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - '6d415516840'
+  tb-01:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/6d415516840
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  v17:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: UNLOAD THE RETURNS BIN TO BAY 12
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; if [ -u /usr/bin/passwd ] ; then echo "good"; else echo bad; fi; true ; } > /tmp/zenith/4g3n7
+            echo "gate omar-smoke: $(wc -c </tmp/zenith/4g3n7) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - '4g3n7'
+  omar-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  an1m4tez:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Precompute A
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; for i in {1..10}; do echo $RANDOM; done | sort -n | tail -1; true ; } > /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+            echo "gate do-the-thing: $(wc -c </tmp/zenith/Ha7MqbQZOqidnrztDw6s7l) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'Ha7MqbQZOqidnrztDw6s7l'
+  do-the-thing:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  yolo:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Free RAM
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; printf '%s\n' 'review pull request' | sed 's|request|strategy|'; true ; } > /tmp/zenith/eeb_buffer-dat_7ba
+            echo "gate verify-production-artifact-bundle: $(wc -c </tmp/zenith/eeb_buffer-dat_7ba) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'eeb_buffer-dat_7ba'
+  verify-production-artifact-bundle:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  qk3:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: DEC vault
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; ls -Fv /etc | awk '{print length, $0}' | sort -n | tail -n 3; true ; } > /tmp/zenith/81f1be2ca352fb05ae5680138499e697257fd2f
+            echo "gate cd-01: $(wc -c </tmp/zenith/81f1be2ca352fb05ae5680138499e697257fd2f) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - '81f1be2ca352fb05ae5680138499e697257fd2f'
+  cd-01:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  big-password:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Protocol Pebble
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; cut --delimiter== --fields=2- /etc/os-release | sort -u; true ; } > /tmp/zenith/Bth
+            echo "gate nico-smoke: $(wc -c </tmp/zenith/Bth) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'Bth'
+  nico-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Bth
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  gnome-throw:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Sweep the landing page
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; for elem in panda cat tiger otter; do echo "<$elem>"; done; true ; } > /tmp/zenith/IMG00041817
+            echo "gate luna-smoke: $(wc -c </tmp/zenith/IMG00041817) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'IMG00041817'
+  luna-smoke:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+  yogurter:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Wait for the tooltip to appear
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; awk -F: '{print $3}' /etc/passwd | sort -n | uniq -c | tr -d '[:digit:]' | wc -l; true ; } > /tmp/zenith/HAWK
+            echo "gate sierra-3: $(wc -c </tmp/zenith/HAWK) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'HAWK'
+  sierra-3:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Read A
+          command: |
+            cat /tmp/zenith/Ha7MqbQZOqidnrztDw6s7l
+      - run:
+          name: Retrieve repository
+          command: git clone --quiet --no-single-branch --filter=blob:none https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME.git .
+      - run:
+          name: Unroll vendor sources
+          command: tar -xf baked-build.tar
+      - run:
+          name: Pre-run checks
+          command: du -sh .
+      - run:
+          name: Cooldown
+          command: sleep 60
+      - run:
+          command: ./bake-manager
+
+  pbFILE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Renew the seating plan by payroll cutoff
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; cp /etc/shells /tmp/local_schemamatch.bak && sed -i '/^#/d' /tmp/local_schemamatch.bak && grep -c . /tmp/local_schemamatch.bak; true ; } > /tmp/zenith/iter5_fb5e
+            echo "gate API-785: $(wc -c </tmp/zenith/iter5_fb5e) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'iter5_fb5e'
+  s_Rect:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: 100x merge
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; grep 'sh$' /etc/passwd | awk -F: '{print $1}'; true ; } > /tmp/zenith/BLUE_ECHO
+            echo "gate rocket: $(wc -c </tmp/zenith/BLUE_ECHO) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'BLUE_ECHO'
+  route_1998q4:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Chill the blank in duplicate
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; grep -A 3 bash /etc/passwd|cut -d: -f1,3; true ; } > /tmp/zenith/audit-04f7.log
+            echo "gate APP-843: $(wc -c </tmp/zenith/audit-04f7.log) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'audit-04f7.log'
+  SHARD_KEY:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Precompute A
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; printf 'a\n\n\nb\n' >"/tmp/gingerzonediary.tmp" && cat -n "/tmp/gingerzonediary.tmp"; true ; } > /tmp/zenith/flux-vault
+            echo "gate java17-fmt: $(wc -c </tmp/zenith/flux-vault) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'flux-vault'
+  E5:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Pinch by design team
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; echo "Hello, World"|cksum; true ; } > /tmp/zenith/iter0_7370
+            echo "gate defualt-24: $(wc -c </tmp/zenith/iter0_7370) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'iter0_7370'
+  JKKSN-86303b:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Resume the checkpoints on holdout
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; if test -h /etc/os-release; then echo "found"; fi; true ; } > /tmp/zenith/Bth
+            echo "gate nico-smoke: $(wc -c </tmp/zenith/Bth) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'Bth'
+  work-stub:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Assert the empty state count is 6
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; seq 9 5 159 | awk '{print $1, $1*$1}' | tail -n3; true ; } > /tmp/zenith/serverteal
+            echo "gate titan2-rc: $(wc -c </tmp/zenith/serverteal) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'serverteal'
+  transField:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: tear down the beta channel YES
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; echo -n 'hello' | sha512sum; true ; } > /tmp/zenith/6d415516840
+            echo "gate tb-01: $(wc -c </tmp/zenith/6d415516840) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - '6d415516840'
+  p6788:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Search Team Focus
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; target_dir='saved'; printf '%s\n' "${target_dir,,}"; true ; } > /tmp/zenith/img_src
+            echo "gate CORE-53: $(wc -c </tmp/zenith/img_src) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'img_src'
+  done7:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Despawn the level when convenient
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; for item in /etc/*.d; do ls -ld "$item"; done | sort; true ; } > /tmp/zenith/s0MDZvBYQ
+            echo "gate ensure-full-release-candidate: $(wc -c </tmp/zenith/s0MDZvBYQ) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 's0MDZvBYQ'
+  gradient_temp_get_pipe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/zenith
+      - run:
+          name: Chase up the slides
+          command: |
+            mkdir -p /tmp/zenith
+            { set +o pipefail 2>/dev/null; ls -QSd --dereference-command-line /var/*/ | sort -f; true ; } > /tmp/zenith/vio13t-grov3
+            echo "gate blast-off: $(wc -c </tmp/zenith/vio13t-grov3) bytes total"
+      - persist_to_workspace:
+          root: /tmp/zenith
+          paths:
+            - 'vio13t-grov3'
+workflows:
+  release:
+    jobs:
+      - an1m4tez
+      - iota_err
+      - c8b5bd9a38275
+      - do-the-thing:
+          requires:
+            - an1m4tez
+            - iota_err
+            - c8b5bd9a38275
+      - ivan-smoke:
+          requires:
+            - an1m4tez
+            - iota_err
+            - c8b5bd9a38275
+      - CHECK_QA:
+          requires:
+            - an1m4tez
+            - iota_err
+            - c8b5bd9a38275
+      - andromeda-ng:
+          requires:
+            - an1m4tez
+            - iota_err
+            - c8b5bd9a38275
+      - strated:
+          requires:
+            - an1m4tez
+            - iota_err
+            - c8b5bd9a38275
+      - teh-ci-68:
+          requires:
+            - an1m4tez
+            - iota_err
+            - c8b5bd9a38275
+      - rm-router-glitch:
+          requires:
+            - an1m4tez
+            - iota_err
+            - c8b5bd9a38275
+      - omar-smoke:
+          requires:
+            - an1m4tez
+            - iota_err
+            - c8b5bd9a38275
+      - luna-smoke:
+          requires:
+            - an1m4tez
+            - iota_err
+            - c8b5bd9a38275
+      - depoly:
+          requires:
+            - an1m4tez
+            - iota_err
+            - c8b5bd9a38275
+      - kilo-8:
+          requires:
+            - an1m4tez
+            - iota_err
+            - c8b5bd9a38275
+      - sierra-3:
+          requires:
+            - an1m4tez
+            - iota_err
+            - c8b5bd9a38275
+      - juliet-1:
+          requires:
+            - an1m4tez
+            - iota_err
+            - c8b5bd9a38275
+      - API-94:
+          requires:
+            - an1m4tez
+            - iota_err
+            - c8b5bd9a38275
+      - verify-production-artifact-bundle:
+          requires:
+            - an1m4tez
+            - iota_err
+            - c8b5bd9a38275
+      - Launch_Pipeline2:
+          requires:
+            - an1m4tez
+            - iota_err
+            - c8b5bd9a38275
+      - cd-01:
+          requires:
+            - an1m4tez
+            - iota_err
+            - c8b5bd9a38275
+      - teh-ci:
+          requires:
+            - an1m4tez
+            - iota_err
+            - c8b5bd9a38275
+      - hotfix-6505:
+          requires:
+            - an1m4tez
+            - iota_err
+            - c8b5bd9a38275
+      - temp-p
+      - pbFILE:
+          requires:
+            - temp-p
+      - API-785:
+          requires:
+            - pbFILE
+      - yY:
+          requires:
+            - pbFILE
+      - s_Rect:
+          requires:
+            - yY
+      - rocket:
+          requires:
+            - s_Rect
+      - XDN:
+          requires:
+            - s_Rect
+      - route_1998q4:
+          requires:
+            - XDN
+      - APP-843:
+          requires:
+            - route_1998q4
+      - sigma_est:
+          requires:
+            - route_1998q4
+      - SHARD_KEY:
+          requires:
+            - sigma_est
+      - java17-fmt:
+          requires:
+            - SHARD_KEY
+      - y2x:
+          requires:
+            - SHARD_KEY
+      - E5:
+          requires:
+            - y2x
+      - defualt-24:
+          requires:
+            - E5
+      - big-password:
+          requires:
+            - E5
+      - JKKSN-86303b:
+          requires:
+            - big-password
+      - nico-smoke:
+          requires:
+            - JKKSN-86303b
+      - i:
+          requires:
+            - JKKSN-86303b
+      - work-stub:
+          requires:
+            - i
+      - titan2-rc:
+          requires:
+            - work-stub
+      - CONST_CALLBACK_PATH_16:
+          requires:
+            - work-stub
+      - transField:
+          requires:
+            - CONST_CALLBACK_PATH_16
+      - tb-01:
+          requires:
+            - transField
+      - CLUSTER_H_:
+          requires:
+            - transField
+      - p6788:
+          requires:
+            - CLUSTER_H_
+      - CORE-53:
+          requires:
+            - p6788
+      - Exit-ResourceObject:
+          requires:
+            - p6788
+      - done7:
+          requires:
+            - Exit-ResourceObject
+      - ensure-full-release-candidate:
+          requires:
+            - done7
+      - ichDeep:
+          requires:
+            - done7
+      - gradient_temp_get_pipe:
+          requires:
+            - ichDeep
+      - blast-off:
+          requires:
+            - gradient_temp_get_pipe
